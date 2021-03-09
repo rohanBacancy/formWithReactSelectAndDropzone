@@ -4,6 +4,7 @@ import Input from '../formInsides/Input';
 import RadioGrp from '../formInsides/RadioGrp';
 import TextArea from '../formInsides/TextArea';
 import DropBox from '../formInsides/DropBox';
+import DropZone from '../formInsides/DropZone';
 
 const Form = () => {
 
@@ -18,27 +19,20 @@ const Form = () => {
 
     const [allFormFieldErrs , setAllFormFieldErrs ] = useState({
         nameErr:true,
-        aboutErr:true
+        aboutErr:true,
+        dropZoneErr:true,
     });
 
     const handleSubmit = (e) =>
     {
         e.preventDefault();
-        if( allFormFieldErrs.nameErr===false && allFormFieldErrs.aboutErr===false )
+        if( allFormFieldErrs.nameErr===false && allFormFieldErrs.aboutErr===false && allFormFieldErrs.dropZoneErr===false )
         {
             alert("Form Submitted Successfully");
         }
-        else if(allFormFieldErrs.nameErr == true && allFormFieldErrs.aboutErr===true)
+        else
         {
-            alert("Name and About must contain 5 characters or more");
-        }
-        else if(allFormFieldErrs.nameErr == true && allFormFieldErrs.aboutErr===false)
-        {
-            alert("Name must contain 5 characters or more");
-        }
-        else if(allFormFieldErrs.nameErr == false && allFormFieldErrs.aboutErr===true)
-        {
-            alert("About must contain 5 characters or more");
+            alert("Please Fill the Form Properly");
         }
     }
 
@@ -113,6 +107,13 @@ const Form = () => {
                         items={languages}
                         value={allFormFieldVals.languages} 
                         handleChange={handleChange}/>
+
+                    <DropZone
+                        allFormFieldErrs={allFormFieldErrs} 
+                        setAllFormFieldErrs={setAllFormFieldErrs}
+                        handleChange={handleChange}
+                        allFormFieldVals={allFormFieldVals}
+                        setAllFormFieldVals={setAllFormFieldVals}/>
 
                     <button type="submit">Submit</button>
             </form>
