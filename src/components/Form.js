@@ -27,9 +27,19 @@ const Form = () => {
         if( allFormFieldErrs.nameErr===false && allFormFieldErrs.aboutErr===false )
         {
             alert("Form Submitted Successfully");
-        
         }
-        else{alert("Form Contains Errors")}
+        else if(allFormFieldErrs.nameErr == true && allFormFieldErrs.aboutErr===true)
+        {
+            alert("Name and About must contain 5 characters or more");
+        }
+        else if(allFormFieldErrs.nameErr == true && allFormFieldErrs.aboutErr===false)
+        {
+            alert("Name must contain 5 characters or more");
+        }
+        else if(allFormFieldErrs.nameErr == false && allFormFieldErrs.aboutErr===true)
+        {
+            alert("About must contain 5 characters or more");
+        }
     }
 
     const handleChange = (e) =>

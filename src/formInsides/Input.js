@@ -1,21 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Input = ({ name,value,handleChange,title,allFormFieldErrs,setAllFormFieldErrs }) => {
+
+    const [errClass,setErrClass] = useState({outline:'none'});
 
     const validateName = (e) =>
     {
         handleChange(e);
         
         if(e.target.value.length > 4)
-        { console.log("Name good"); setAllFormFieldErrs({...allFormFieldErrs,nameErr:false}) }
+        { setErrClass({outline:'none'}); setAllFormFieldErrs({...allFormFieldErrs,nameErr:false}) }
         else 
-        { console.log("Name Not Good");  setAllFormFieldErrs({...allFormFieldErrs,nameErr:true}) }
+        { setErrClass({outline:'none',border:'1px solid red'});  setAllFormFieldErrs({...allFormFieldErrs,nameErr:true}) }
     }
 
     return (
         <div>
             <label htmlFor={name} style={{marginRight:'10px'}}> {title} : </label>  
-            <input type="text" name={name} value={value} onChange={validateName} />
+            <input style={errClass} type="text" name={name} value={value} onChange={validateName} />
         </div>
     )
 }
